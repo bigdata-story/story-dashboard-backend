@@ -1,13 +1,15 @@
 import os
 
-from flask import Flask, request, abort, make_response
-from flask_restful import Resource, Api
 from cassandra.cluster import Cluster
+from flask import Flask, request, abort, make_response
+from flask_cors import CORS
+from flask_restful import Resource, Api
 
 cluster = Cluster([os.getenv('CASSANDRA_HOST', 'localhost')])
 keyspace = os.getenv('CASSANDRA_KEYSPACE', 'story')
 app = Flask(__name__)
 api = Api(app)
+CORS(app)
 
 
 class ActiveUser(Resource):
