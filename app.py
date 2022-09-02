@@ -8,8 +8,10 @@ from flask_restful import Resource, Api
 cluster = Cluster([os.getenv('CASSANDRA_HOST', 'localhost')])
 keyspace = os.getenv('CASSANDRA_KEYSPACE', 'story')
 app = Flask(__name__)
-api = Api(app)
 CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+api = Api(app)
+
 
 
 class ActiveUser(Resource):
