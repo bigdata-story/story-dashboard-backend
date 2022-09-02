@@ -73,4 +73,4 @@ api.add_resource(EventCountInCourse, '/event-count-in-course')
 api.add_resource(CoursePlayedTime, '/course-played-time')
 
 if __name__ == '__main__':
-    app.run(port=int(os.getenv('PORT1', "8000")))
+    app.run()
