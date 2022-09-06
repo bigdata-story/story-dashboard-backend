@@ -1,25 +1,15 @@
 version: "3.9"
 
 services:
-  cassandra:
-    image: cassandra:3.11.13
-    restart: always
-    volumes:
-      - cassandra_volume:/var/lib/cassandra
-    environment:
-      - "CASSANDRA_SEEDS=cassandra"
-      - "CASSANDRA_CLUSTER_NAME=Story Cluster"
-      - "CASSANDRA_DC=dc1"
-      - "CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch"
-      - "HEAP_NEWSIZE=128M"
-      - "MAX_HEAP_SIZE=500M"
   backend:
     build: .
     ports:
       - "8000:8000"
     environment:
-      - CASSANDRA_HOST=cassandra
+      - CASSANDRA_HOST=cassandra-cluster
 
 
-volumes:
-  cassandra_volume:
+networks:
+  overlay:
+    external: true
+    name: story-network
