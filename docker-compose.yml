@@ -7,6 +7,8 @@ services:
       - "8000:8000"
     environment:
       - CASSANDRA_HOST=cassandra-cluster
+    networks:
+      - overlay
 
 
 networks:
